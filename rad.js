@@ -1,12 +1,19 @@
-MassHWTranswarp.set(
-    qi,        // Masse
-    iqq,       // Geschwindigkeit
-    TimeHW.delta
-);
-function messen() {
-  const aufstieg = state.a81 > 9 ? "HOCH" : "NIEDRIG";
-  const antrieb = state.tmp === "Pump" ? "AKTIV" : "RUHIG";
-  const energie = state.a81;
+function neueSchaltung() {
 
-  return { aufstieg, antrieb, energie };
+    // Innen-Lehre
+    state.a81 = innenLehre(state.a81);
+
+    // Zahnrad
+    zahnradTick();
+
+    // Transwarp
+    MassHWTranswarp.set(
+        state.a81,
+        reinEnergie(),
+        TimeHW.delta
+    );
+    MassHWTranswarp.compute();
+
+    // Telemetrie
+    return messen();
 }
