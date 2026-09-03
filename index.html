@@ -67,3 +67,16 @@ class MCFLY_Engine {
         return this.tele();
     }
 }
+
+// Engine EINMAL erzeugen
+const engine = new MCFLY_Engine();
+
+// Orbit EINMAL starten
+function orbitLoop() {
+    const axis = A81_AXIS.build();
+    const tele = engine.run(axis);
+    updateDisplay(tele);
+    requestAnimationFrame(orbitLoop);
+}
+
+orbitLoop();
