@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<title>AMIGA · Transwarp Gate · Mini‑Cube Move</title>
+<title>AMIGA · MCFLY · Warp‑Gate</title>
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   body {
@@ -21,51 +21,54 @@
 </head>
 <body>
 
-<canvas id="scene" width="600" height="400"></canvas>
+<canvas id="scene" width="700" height="400"></canvas>
 
 <script>
 const c = document.getElementById("scene");
 const ctx = c.getContext("2d");
 
 let cube = {
-  x: 100,
+  x: 120,
   y: c.height/2,
-  size: 20,
+  size: 22,
   scale: 1,
-  speed: 2,
+  speed: 2.2,
   entering: false,
-  alpha: 1
+  alpha: 1,
+  warp: 0
 };
 
 const gate = {
-  x: 450,
+  x: 520,
   y: c.height/2,
-  r: 60,
-  wave: 0
+  r: 70,
+  wave: 0,
+  shimmer: 0
 };
 
 function drawGate() {
   gate.wave += 0.05;
+  gate.shimmer = Math.sin(gate.wave * 0.7) * 0.2 + 0.3;
 
-  // Wasser‑Membran (fast unsichtbar)
+  // Flüssige Membran
   const grd = ctx.createRadialGradient(
-    gate.x, gate.y, gate.r * 0.2,
-    gate.x, gate.y, gate.r * 1.2
+    gate.x, gate.y, gate.r * 0.1,
+    gate.x, gate.y, gate.r * 1.4
   );
-  grd.addColorStop(0, "rgba(100,150,255,0.15)");
-  grd.addColorStop(0.5, "rgba(100,150,255,0.05)");
+  grd.addColorStop(0, `rgba(120,180,255,${gate.shimmer})`);
+  grd.addColorStop(0.4, `rgba(120,180,255,${gate.shimmer * 0.4})`);
   grd.addColorStop(1, "rgba(0,0,0,0)");
 
   ctx.fillStyle = grd;
   ctx.beginPath();
-  ctx.arc(gate.x, gate.y, gate.r + Math.sin(gate.wave)*3, 0, Math.PI*2);
+  ctx.arc(gate.x, gate.y, gate.r + Math.sin(gate.wave)*4, 0, Math.PI*2);
   ctx.fill();
 
   // Schimmernder Rand
-  ctx.strokeStyle = "rgba(150,200,255,0.25)";
+  ctx.strokeStyle = `rgba(180,220,255,${gate.shimmer})`;
   ctx.lineWidth = 2;
   ctx.beginPath();
-  ctx.arc(gate.x, gate.y, gate.r + Math.sin(gate.wave)*2, 0, Math.PI*2);
+  ctx.arc(gate.x, gate.y, gate.r + Math.sin(gate.wave)*3, 0, Math.PI*2);
   ctx.stroke();
 }
 
@@ -75,8 +78,16 @@ function drawCube() {
 
   const s = cube.size * cube.scale;
 
+  // Warp‑Verzerrung
+  const warpOffset = Math.sin(cube.warp) * (cube.scale * 2);
+
   ctx.fillStyle = "#44ccff";
-  ctx.fillRect(cube.x - s/2, cube.y - s/2, s, s);
+  ctx.fillRect(
+    cube.x - s/2 - warpOffset,
+    cube.y - s/2,
+    s + warpOffset*2,
+    s
+  );
 
   ctx.restore();
 }
@@ -87,24 +98,24 @@ function update() {
   drawGate();
   drawCube();
 
-  // Bewegung
   if (!cube.entering) {
     cube.x += cube.speed;
 
-    // Kontakt mit Tor
     if (cube.x >= gate.x - gate.r) {
       cube.entering = true;
     }
   } else {
-    // 4× Vergrößerung
-    if (cube.scale < 4) cube.scale += 0.1;
+    cube.warp += 0.2;
 
-    // Fade‑Out
-    cube.alpha -= 0.03;
+    // 4× Vergrößerung
+    if (cube.scale < 4) cube.scale += 0.12;
+
+    // Warp‑Fade
+    cube.alpha -= 0.025;
 
     // Einsaugen
-    cube.x += 1;
-    cube.y += Math.sin(cube.x * 0.1) * 0.5;
+    cube.x += 1.5;
+    cube.y += Math.sin(cube.x * 0.08) * 0.7;
   }
 
   requestAnimationFrame(update);
