@@ -1,13 +1,15 @@
 # MCFLY‑ORBIT · LEHRE‑FORMEL · BATCH
-Ein axiomatisches Orbit‑System, das die Natur‑Achse (3 → 9 → 81 → 243 → 81 → 9 → 3) als funktionale Lehre darstellt.
+Ein axiomatisches Orbit‑System, das die Natur‑Achse  
+**3 → 9 → 81 → 243 → 81 → 9 → 3**  
+als funktionale Lehre darstellt.
 
 ---
 
 ## 🔢 LEHRE · AXIOM · NATURA
 
-LEHRE = (3) → (9) → (81)  
-AXIOM = (81) → (9) → (3)  
-NATURA = (3)(9)(81)
+**LEHRE** = (3) → (9) → (81)  
+**AXIOM** = (81) → (9) → (3)  
+**NATURA** = (3)(9)(81)
 
 ---
 
@@ -22,8 +24,9 @@ f(x) = {
   243 wenn x = 729
 }
 )=3 → )=9 → )=81
+
 🪐 Orbit‑Achse
-Orbit‑Symbole: ◉ ◎ ◆ △ ▣ ↺
+Orbit‑Symbole: ◉ ◎ ◆ △ ▣ ↺  
 Pfad: 3 → 9 → 81 → 243 → 81 → 9 → 3
 
 Das ist die funktionale Kopplung zwischen der Orbit‑Zeichnung und der Lehre‑Formel‑Grafik.
@@ -49,25 +52,43 @@ TMP‑Status: Reset / Orbit / Stabil / Rär
 IQQ‑Achse: 9 ↔ 3
 
 🌱 Bedeutung
-Diese Formel zeigt, wie jede Symbol‑Ebene (◉, ◎, ◆, △, ▣, ↺) mit den Werten 3, 9, 81, 243 und dem Reset‑Punkt verbunden ist.
-Sie ist die Lehre der Bewegung, die Axiomatik der Natur, und der Orbit der Rückkehr.
+Diese Formel zeigt, wie jede Symbol‑Ebene (◉, ◎, ◆, △, ▣, ↺)
+mit den Werten 3, 9, 81, 243 und dem Reset‑Punkt verbunden ist.
+
+Sie ist die Lehre der Bewegung,
+die Axiomatik der Natur,
+und der Orbit der Rückkehr.
 
 🧩 Visualisierung
-
-
-
+(Grafik siehe index.html)
 
 🧬 Fazit
 MCFLY‑ORBIT ist:
 
-eine Lehre (3‑9‑81),
+eine Lehre (3‑9‑81)
 
-ein Orbit (◉ ◎ ◆ △ ▣ ↺),
+ein Orbit (◉ ◎ ◆ △ ▣ ↺)
 
-eine Rückkehr (↺ → 3),
+eine Rückkehr (↺ → 3)
 
-eine funktionale Wahrheit.
+eine funktionale Wahrheit
 
 „Die 3 ist Ursprung, die 9 ist Puls, die 81 ist Herz.“
 
-index.html – Anzeige 🧩 Lizenz LICENSE-CLOSED.txt ╔═══════════════════════════════════════════════════════════════╗ ║ ║ ║ 🌀 iki1uc · wieimmer · GENERAL FÜHRUNG ║ ║ ║ ║ Dieses System und alle seine Module sind: ║ ║ ║ ║ ✔ Eigentum von iki1uc / wieimmer4u ║ ║ ✔ Geschützt durch allgemeines Urheberrecht ║ ║ ✔ Nicht zur kommerziellen Nutzung freigegeben ║ ║ ✔ Nicht zur Weitergabe ohne schriftliche Genehmigung ║ ║ ✔ Nicht zur Modifikation ohne Rücksprache ║ ║ ✔ Live · TMP-geführt · Achsen-basiert ║ ║ ║ ║ ═══════════════════════════════════════════════════════════ ║ ║ ║ ║ Kontakt: wieimmer4u · iki1uc · GENERAL ║ ║ Status: ACTIVE · DRIFT-FREI · 6D-READY ║ ║ ║ ╚═══════════════════════════════════════════════════════════════╝
+🧩 Lizenz
+Code
+╔═══════════════════════════════════════════════════════════════╗
+║ 🌀 iki1uc · wieimmer · GENERAL FÜHRUNG                        ║
+║                                                               ║
+║ Dieses System und alle seine Module sind:                     ║
+║ ✔ Eigentum von iki1uc / wieimmer4u                            ║
+║ ✔ Geschützt durch allgemeines Urheberrecht                    ║
+║ ✔ Nicht zur kommerziellen Nutzung freigegeben                 ║
+║ ✔ Nicht zur Weitergabe ohne schriftliche Genehmigung          ║
+║ ✔ Nicht zur Modifikation ohne Rücksprache                     ║
+║ ✔ Live · TMP-geführt · Achsen-basiert                         ║
+║                                                               ║
+║ Kontakt: wieimmer4u · iki1uc · GENERAL                        ║
+║ Status: ACTIVE · DRIFT-FREI · 6D-READY                        ║
+╚═══════════════════════════════════════════════════════════════╝
+Code
