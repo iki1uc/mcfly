@@ -2,73 +2,131 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A81 · Nano‑Ability‑Status</title>
+<title>HH – Host Hub Stargate + Ghost L2</title>
 
 <style>
-  body {
-    background:#eef2f5;
-    font-family:-apple-system,Segoe UI,Roboto,sans-serif;
+body {
+    background:#000;
+    color:#0f0;
+    font-family:Consolas, monospace;
     padding:20px;
-    display:flex;
-    justify-content:center;
-  }
-  .box {
-    width:380px;
-    background:#fff;
-    border:1px solid #d9dde3;
+    overflow:hidden;
+}
+
+/* Stargate verstärkt */
+#gate {
+    position:absolute;
+    right:0;
+    top:0;
+    width:50vw;
+    height:100vh;
+    border-left:4px solid #0ff;
+    background:radial-gradient(circle at center, #444, #000);
+    animation:spinGate 12s linear infinite;
+}
+@keyframes spinGate { from {transform:rotate(0deg);} to {transform:rotate(360deg);} }
+
+#vortex {
+    position:absolute;
+    right:0;
+    top:0;
+    width:50vw;
+    height:100vh;
+    background:conic-gradient(from 180deg, #0ff, #000);
+    opacity:0.35;
+    animation:vortexSpin 5s linear infinite;
+}
+@keyframes vortexSpin { from {transform:rotate(0deg);} to {transform:rotate(-360deg);} }
+
+#halo {
+    position:absolute;
+    right:0;
+    top:8vh;
+    width:50vw;
+    height:12vh;
+    background:radial-gradient(circle, rgba(255,255,255,0.5), transparent);
+}
+
+/* Scan Panel sichtbar */
+#scanPanel {
+    position:absolute;
+    left:20px;
+    bottom:20px;
+    width:40vw;
+    background:#111;
+    padding:20px;
+    border:2px solid #333;
     border-radius:10px;
-    padding:20px;
-  }
-  h1 { font-size:18px; margin-bottom:10px; }
-  .row {
-    display:flex;
-    justify-content:space-between;
-    padding:6px 0;
-    border-bottom:1px solid #f0f1f4;
-    font-size:14px;
-  }
-  canvas {
-    width:100%;
-    max-width:320px;
-    background:#fafbfc;
-    border:1px solid #e2e5eb;
-    border-radius:8px;
-    margin:14px 0;
-  }
-  button {
-    background:#1c2230;
-    color:#fff;
-    border:none;
-    border-radius:6px;
-    padding:8px 14px;
-    font-size:13px;
-    cursor:pointer;
-    margin-right:6px;
-  }
-  button:hover { background:#333c4f; }
-  .log {
-    height:140px;
-    overflow-y:auto;
-    background:#f9fafb;
-    border:1px solid #e2e5eb;
-    border-radius:8px;
-    padding:10px;
-    font-size:12px;
-    font-family:ui-monospace;
-  }
+    max-height:45vh;
+    overflow:auto;
+}
+
+.module { margin-bottom:10px; font-size:14px; }
+.green { color:#3f3; }
+.red { color:#f33; }
+.yellow { color:#ff0; }
+.cyan { color:#0ff; }
 </style>
+
+<script>
+// Ghost Level‑2
+window.GHOST = {
+    level: 2,
+
+    scanModule(name, loaded) {
+        return {
+            module: name,
+            loaded,
+            status: loaded ? "OK" : "GHOST‑REPAIR",
+            color: loaded ? "green" : "cyan"
+        };
+    },
+
+    repairMissingModules(modules) {
+        return modules.map(m => this.scanModule(m.name, m.loaded));
+    }
+};
+</script>
+
 </head>
+
 <body>
 
-<div class="box">
+<h1>HH – Host Hub</h1>
+<p>Stargate + Ghost‑Repair‑Level‑2 aktiv.</p>
 
-  <h1>A81‑Axis · Nano‑Ability</h1>
+<div id="gate"></div>
+<div id="vortex"></div>
+<div id="halo"></div>
 
-  <!-- A81 / 9×9 / QI/IQQ/OCTA -->
-  <div class="row"><span>A81‑Slots</span><span id="a81">81</span></div>
-  <div class="row"><span>9×9‑Engine</span><span id="nine">9</span></div>
-  <div class="row"><span>QI/IQQ/OCTA</span><span id="qiocta">Aktiv</span></div>
+<div id="scanPanel">
+    <h2>Pipeline‑Status</h2>
+    <div id="modules"></div>
+</div>
 
-  <!-- 81.build / 81.rom / 81.scan -->
-  <div class="row"><span>81.build</span>
+<script>
+(function () {
+
+    const modules = [
+        { name: "TriAxiom", loaded: false },
+        { name: "RESPO", loaded: false },
+        { name: "AXI", loaded: false },
+        { name: "TEM", loaded: false },
+        { name: "RUN8 Kernel", loaded: false }
+    ];
+
+    const repaired = GHOST.repairMissingModules(modules);
+
+    const out = repaired.map(m =>
+        `<div class="module ${m.color}">
+            <b>${m.module}:</b> ${m.status}
+        </div>`
+    ).join("");
+
+    document.getElementById("modules").innerHTML = out;
+
+})();
+</script>
+
+</body>
+</html>
