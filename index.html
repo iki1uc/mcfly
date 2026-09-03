@@ -6,7 +6,6 @@ class MCFLY_Engine {
         this.step = state.step;
     }
 
-    // Innen-Lehre 81 → 3 → 9 → 81
     innen() {
         if (this.a81 === 81) this.a81 = 3;
         else if (this.a81 === 3) this.a81 = 9;
@@ -14,7 +13,6 @@ class MCFLY_Engine {
         else this.a81 = 3;
     }
 
-    // Energie-Module
     nano() {
         return this.a81 / 9;
     }
@@ -27,12 +25,10 @@ class MCFLY_Engine {
         return this.step % 2 === 0 ? "KUCK" : "KUCK-KUCK";
     }
 
-    // Zahnrad
     tick() {
         this.zahnrad = (this.zahnrad + 1) % 12;
     }
 
-    // Transwarp
     transwarp() {
         MassHWTranswarp.set(
             this.nano(),
@@ -42,7 +38,6 @@ class MCFLY_Engine {
         MassHWTranswarp.compute();
     }
 
-    // Pipeline
     pipeline(axis) {
         Pipeline9.useA81({
             pipe9: axis.pipe9,
@@ -54,17 +49,21 @@ class MCFLY_Engine {
         });
     }
 
-    // Telemetrie
     tele() {
         return messen();
     }
 
-    // Hauptschaltung
     run(axis) {
         this.innen();
         this.tick();
         this.transwarp();
         this.pipeline(axis);
+
+        // WICHTIG: zurück in globalen state schreiben
+        state.a81 = this.a81;
+        state.zahnrad = this.zahnrad;
+        state.step++;
+
         return this.tele();
     }
 }
