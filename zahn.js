@@ -11,3 +11,4 @@ state.zahnrad = 0;
 function zahnradTick() {
   state.zahnrad = (state.zahnrad + 1) % 12; // 12 Zähne
 }
+zahnradTick();
