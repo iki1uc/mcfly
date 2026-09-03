@@ -68,10 +68,8 @@ class MCFLY_Engine {
     }
 }
 
-// Engine EINMAL erzeugen
 const engine = new MCFLY_Engine();
 
-// Orbit EINMAL starten
 function orbitLoop() {
     const axis = A81_AXIS.build();
     const tele = engine.run(axis);
